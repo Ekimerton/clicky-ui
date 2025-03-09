@@ -19,3 +19,17 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer components {
+  .sticky-button-front {
+    @apply relative block px-10 py-3 rounded-xl text-xl text-black will-change-transform transition-all duration-600 ease-[cubic-bezier(0.3,0.7,0.4,1)] border-2 border-slate-950;
+  }
+  
+  .sticky-button-front-pressed {
+    @apply -translate-y-0.5 bg-yellow-200;
+  }
+  
+  .sticky-button-front-unpressed {
+    @apply -translate-y-2 bg-slate-50;
+  }
+}
