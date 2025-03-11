@@ -52,13 +52,13 @@ export default function StickyButton({
         >
             {/* Edge layer */}
             <span
-                className={`absolute inset-x-0 bottom-0 top-2 rounded-xl border-2 border-slate-950/10 border-t-0 transition-all ${
+                className={`absolute inset-x-0 bottom-0 top-2 rounded-lg border-2 border-slate-950/10 border-t-0 transition-all ${
                     isActive ? pressedColor : baseColor
                 }`}
             />
             {/* Front layer */}
             <span
-                className={`relative flex items-center justify-center border-2 rounded-xl text-black will-change-transform transition-all border-slate-950/10 group-active:-translate-y-0 ${sizeClasses} ${
+                className={`relative flex items-center justify-center border-2 rounded-lg text-black will-change-transform transition-all border-slate-950/10 group-active:-translate-y-0 ${sizeClasses} ${
                     isActive ? "-translate-y-1" : "-translate-y-2"
                 } ${isActive ? pressedColor : baseColor}
         `}

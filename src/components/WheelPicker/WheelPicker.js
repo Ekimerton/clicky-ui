@@ -153,9 +153,7 @@ export default function WheelPicker({ options }) {
     }, [userOffset, options, itemHeight, playClick]);
 
     // No transition while dragging
-    const transition = pointerDataRef.current
-        ? "none"
-        : "transform 0.3s ease-out";
+    const transition = "none";
 
     return (
         <div
