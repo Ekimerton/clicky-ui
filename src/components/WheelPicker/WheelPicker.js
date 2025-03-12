@@ -167,7 +167,7 @@ export default function WheelPicker({ options }) {
             onTouchMove={handlePointerMove}
             onTouchEnd={handlePointerUp}
             onAuxClick={(e) => e.preventDefault()} // block middle-click
-            className="relative m-auto select-none [touch-action:none] w-[200px] h-[200px]"
+            className="relative m-auto select-none [touch-action:none] w-[200px] h-[200px] bg-white rounded-lg shadow-sm"
             style={{
                 overscrollBehavior: "none",
                 overflow: "hidden",
@@ -185,11 +185,7 @@ export default function WheelPicker({ options }) {
                     return (
                         <div
                             key={option}
-                            className={`flex items-center justify-center h-10 ${
-                                isSelected
-                                    ? "font-bold text-black text-base"
-                                    : "font-normal text-gray-600 text-base"
-                            }`}
+                            className={isSelected ? "flex items-center justify-center h-10 font-semibold text-gray-900" : "flex items-center justify-center h-10 text-gray-600"}
                         >
                             {option}
                         </div>

@@ -13,11 +13,11 @@ export default function Textarea({ className, ...props }) {
 
     return (
         <textarea
-            className={`w-full min-h-[100px] p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+            className={`w-[320px] h-[160px] resize-none p-4 bg-white border border-slate-200 rounded-lg text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-slate-200 shadow-sm ${
                 className || ""
             }`}
             onKeyDown={handleKeyDown}
-			onKeyUp={handleKeyUp}
+            onKeyUp={handleKeyUp}
             {...props}
         />
     );
