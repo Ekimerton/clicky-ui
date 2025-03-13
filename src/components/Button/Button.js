@@ -1,7 +1,7 @@
 "use client";
 
 import useSound from "use-sound";
-import normalButton from "./normal-button.wav";
+import normalButton from "./sticky-button.wav";
 
 const sizeVariants = {
     sm: "px-2.5 py-0.5 text-xs font-medium h-7",
@@ -20,8 +20,8 @@ export default function Button({
 }) {
     const [play] = useSound(normalButton, {
         sprite: {
-            press: [1000, 50],
-            release: [2800, 100],
+            press: [250, 50],
+            release: [1550, 50],
         },
     });
 
@@ -31,7 +31,7 @@ export default function Button({
         <button
             onPointerDown={() => play({ id: "press" })}
             onPointerUp={() => play({ id: "release" })}
-            className={`group relative border-none bg-transparent cursor-pointer outline-offset-4 transition-[filter] focus:not-focus-visible:outline-none transition-discrete pt-1.5 ${
+            className={`group relative border-none bg-transparent cursor-pointer outline-offset-4 transition-[filter] focus:not-focus-visible:outline-hidden transition-discrete pt-1.5 ${
                 className || ""
             }`}
             {...props}

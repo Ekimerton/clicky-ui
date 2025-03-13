@@ -18,9 +18,10 @@ export default function StickyButton({
     baseColor = "bg-slate-50",
     pressedColor = "bg-yellow-100",
     size = "default", // "sm" | "default" | "lg" | "icon"
+    isPressed,
+    onClick,
     ...props
 }) {
-    const [isActive, setIsActive] = useState(false);
     const [play] = useSound(normalButton, {
         sprite: {
             unactivePress: [250, 50],
@@ -35,17 +36,17 @@ export default function StickyButton({
     return (
         <button
             onPointerDown={() => {
-                isActive
+                isPressed
                     ? play({ id: "activePress" })
                     : play({ id: "unactivePress" });
             }}
             onPointerUp={() => {
-                isActive
+                isPressed
                     ? play({ id: "activeRelease" })
                     : play({ id: "unactiveRelease" });
             }}
-            onClick={() => setIsActive(!isActive)}
-            className={`group relative border-none bg-transparent cursor-pointer outline-offset-4 transition-[filter] focus:not-focus-visible:outline-none pt-1.5 ${
+            onClick={onClick}
+            className={`group relative border-none bg-transparent cursor-pointer outline-offset-4 transition-[filter] focus:not-focus-visible:outline-hidden pt-1.5 -mt-1 ${
                 className || ""
             }`}
             {...props}
@@ -53,14 +54,14 @@ export default function StickyButton({
             {/* Edge layer */}
             <span
                 className={`absolute inset-x-0 bottom-0 top-1.5 rounded-md border-2 border-slate-950/5 border-t-0 transition-all ${
-                    isActive ? pressedColor : baseColor
+                    isPressed ? pressedColor : baseColor
                 }`}
             />
             {/* Front layer */}
             <span
                 className={`relative flex items-center justify-center border-2 rounded-md text-gray-900 will-change-transform transition-all border-slate-950/5 group-active:-translate-y-0 ${sizeClasses} ${
-                    isActive ? "-translate-y-0.5" : "-translate-y-1.5"
-                } ${isActive ? pressedColor : baseColor}
+                    isPressed ? "-translate-y-0.5" : "-translate-y-1.5"
+                } ${isPressed ? pressedColor : baseColor}
         `}
             >
                 {children}

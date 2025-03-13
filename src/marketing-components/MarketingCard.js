@@ -10,7 +10,7 @@ export default function MarketingCard({
 }) {
     return (
         <div 
-            className="w-full h-[700px] bg-white/80 backdrop-blur-sm border border-slate-200 hover:shadow-lg rounded-2xl transition-all"
+            className="w-full bg-white/50 backdrop-blur-sm rounded-2xl"
             style={{ 
                 display: 'flex', 
                 flexDirection: 'column',
@@ -24,16 +24,16 @@ export default function MarketingCard({
             </div>
             
             {/* Card Middle */}
-            <div className="flex-grow flex flex-col items-center justify-center gap-4 p-4">
+            <div className="flex-grow flex flex-col items-center justify-center gap-2 p-4">
                 {children}
             </div>
             
             {/* Card Bottom */}
-            <div className="mt-auto p-6 text-center border-t border-slate-100">
+            <div className="mt-auto p-6 text-center">
                 <Link
                     href={githubLink}
                     target="_blank"
-                    className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+                    className="inline-flex items-center text-sm font-medium text-slate-500"
                 >
                     View on GitHub →
                 </Link>

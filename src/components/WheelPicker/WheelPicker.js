@@ -14,7 +14,7 @@ export default function WheelPicker({ options }) {
     const previousIndexRef = useRef(null);
 
     // Sound effect
-    const [playClick] = useSound(wheelClick, { volume: 0.05 });
+    const [playClick] = useSound(wheelClick, { volume: 0.2 });
 
     // Calculate derived values
     const finalOffset = baseOffset + userOffset;
@@ -167,7 +167,7 @@ export default function WheelPicker({ options }) {
             onTouchMove={handlePointerMove}
             onTouchEnd={handlePointerUp}
             onAuxClick={(e) => e.preventDefault()} // block middle-click
-            className="relative m-auto select-none [touch-action:none] w-[200px] h-[200px] bg-white rounded-lg shadow-sm"
+            className="relative m-auto select-none [touch-action:none] w-[200px] h-[200px] bg-white rounded-lg shadow-xs"
             style={{
                 overscrollBehavior: "none",
                 overflow: "hidden",
