@@ -46,7 +46,7 @@ export default function Home() {
                         description="A delightful button component with subtle sound feedback on interactions"
                         githubLink="https://github.com/ekimerton/clicky-ui/blob/main/src/components/Button/Button.js"
                     >
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             <Button size="lg">Large</Button>
                             <Button>Default</Button>
                             <Button size="sm">Small</Button>
@@ -59,7 +59,7 @@ export default function Home() {
                         description="A playful button that sticks and unsticks with satisfying sound effects"
                         githubLink="https://github.com/ekimerton/clicky-ui/blob/main/src/components/StickyButton/StickyButton.js"
                     >
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             <StickyButton size="lg">Large</StickyButton>
                             <StickyButton>Default</StickyButton>
                             <StickyButton size="sm">Small</StickyButton>
@@ -72,10 +72,10 @@ export default function Home() {
                         description="Customizable sticky button with theming support and sound effects"
                         githubLink="https://github.com/ekimerton/clicky-ui/blob/main/src/components/StickyButton/StickyButton.js"
                     >
-                        <div className="space-x-8">
-                            <StickyButton size="icon" pressedColor="bg-yellow-400">🌞</StickyButton>
-                            <StickyButton size="icon" pressedColor="bg-indigo-600">🌙</StickyButton>
-                            <StickyButton size="icon" pressedColor="bg-rose-500">🌺</StickyButton>
+                        <div className="space-x-6">
+                            <StickyButton size="icon" baseColor="bg-amber-50" pressedColor="bg-amber-100">🌞</StickyButton>
+                            <StickyButton size="icon" baseColor="bg-violet-50" pressedColor="bg-violet-100">🌙</StickyButton>
+                            <StickyButton size="icon" baseColor="bg-rose-50" pressedColor="bg-rose-100">🌺</StickyButton>
                         </div>
                     </MarketingCard>
 

@@ -6,17 +6,17 @@ import normalButton from "./sticky-button.wav";
 
 // Reuse the same size variants from your Button
 const sizeVariants = {
-    sm: "px-3 py-1 text-sm h-9",
-    default: "px-4 py-2 text-base h-10",
-    lg: "px-5 py-3 text-lg h-11",
-    icon: "p-2 w-10 h-10 flex",
+    sm: "px-2.5 py-0.5 text-xs font-medium h-7",
+    default: "px-3.5 py-1 text-sm font-medium h-9",
+    lg: "px-5 py-2 text-base font-medium h-10",
+    icon: "p-2 w-9 h-9 flex",
 };
 
 export default function StickyButton({
     children,
     className,
-    baseColor = "bg-slate-100",
-    pressedColor = "bg-yellow-200",
+    baseColor = "bg-slate-50",
+    pressedColor = "bg-yellow-100",
     size = "default", // "sm" | "default" | "lg" | "icon"
     ...props
 }) {
@@ -45,21 +45,21 @@ export default function StickyButton({
                     : play({ id: "unactiveRelease" });
             }}
             onClick={() => setIsActive(!isActive)}
-            className={`group relative border-none bg-transparent cursor-pointer outline-offset-4 transition-[filter] focus:not-focus-visible:outline-none pt-2 ${
+            className={`group relative border-none bg-transparent cursor-pointer outline-offset-4 transition-[filter] focus:not-focus-visible:outline-none pt-1.5 ${
                 className || ""
             }`}
             {...props}
         >
             {/* Edge layer */}
             <span
-                className={`absolute inset-x-0 bottom-0 top-2 rounded-lg border-2 border-slate-950/10 border-t-0 transition-all ${
+                className={`absolute inset-x-0 bottom-0 top-1.5 rounded-md border-2 border-slate-950/5 border-t-0 transition-all ${
                     isActive ? pressedColor : baseColor
                 }`}
             />
             {/* Front layer */}
             <span
-                className={`relative flex items-center justify-center border-2 rounded-lg text-black will-change-transform transition-all border-slate-950/10 group-active:-translate-y-0 ${sizeClasses} ${
-                    isActive ? "-translate-y-1" : "-translate-y-2"
+                className={`relative flex items-center justify-center border-2 rounded-md text-gray-900 will-change-transform transition-all border-slate-950/5 group-active:-translate-y-0 ${sizeClasses} ${
+                    isActive ? "-translate-y-0.5" : "-translate-y-1.5"
                 } ${isActive ? pressedColor : baseColor}
         `}
             >
