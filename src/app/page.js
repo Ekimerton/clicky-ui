@@ -46,12 +46,10 @@ export default function Home() {
                         description="A delightful button component with subtle sound feedback on interactions"
                         githubLink="https://github.com/ekimerton/clicky-ui/blob/main/src/components/Button/Button.js"
                     >
-                        <div className="space-y-3">
-                            <Button size="lg">Large</Button>
-                            <Button>Default</Button>
-                            <Button size="sm">Small</Button>
-                            <Button size="icon">👋</Button>
-                        </div>
+                        <Button size="lg">Large</Button>
+                        <Button>Default</Button>
+                        <Button size="sm">Small</Button>
+                        <Button size="icon">👋</Button>
                     </MarketingCard>
 
                     <MarketingCard
@@ -59,12 +57,10 @@ export default function Home() {
                         description="A playful button that sticks and unsticks with satisfying sound effects"
                         githubLink="https://github.com/ekimerton/clicky-ui/blob/main/src/components/StickyButton/StickyButton.js"
                     >
-                        <div className="space-y-3">
-                            <StickyButton size="lg">Large</StickyButton>
-                            <StickyButton>Default</StickyButton>
-                            <StickyButton size="sm">Small</StickyButton>
-                            <StickyButton size="icon">🎯</StickyButton>
-                        </div>
+                        <StickyButton size="lg">Large</StickyButton>
+                        <StickyButton>Default</StickyButton>
+                        <StickyButton size="sm">Small</StickyButton>
+                        <StickyButton size="icon">🎯</StickyButton>
                     </MarketingCard>
 
                     <MarketingCard
@@ -72,11 +68,9 @@ export default function Home() {
                         description="Customizable sticky button with theming support and sound effects"
                         githubLink="https://github.com/ekimerton/clicky-ui/blob/main/src/components/StickyButton/StickyButton.js"
                     >
-                        <div className="space-x-6">
-                            <StickyButton size="icon" baseColor="bg-amber-50" pressedColor="bg-amber-100">🌞</StickyButton>
-                            <StickyButton size="icon" baseColor="bg-violet-50" pressedColor="bg-violet-100">🌙</StickyButton>
-                            <StickyButton size="icon" baseColor="bg-rose-50" pressedColor="bg-rose-100">🌺</StickyButton>
-                        </div>
+                        <StickyButton size="icon" baseColor="bg-amber-50" pressedColor="bg-amber-100">🌞</StickyButton>
+                        <StickyButton size="icon" baseColor="bg-violet-50" pressedColor="bg-violet-100">🌙</StickyButton>
+                        <StickyButton size="icon" baseColor="bg-rose-50" pressedColor="bg-rose-100">🌺</StickyButton>
                     </MarketingCard>
 
                     <MarketingCard
