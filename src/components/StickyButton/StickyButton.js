@@ -1,10 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import useSound from "use-sound";
 import normalButton from "./sticky-button.wav";
 
-// Reuse the same size variants from your Button
 const sizeVariants = {
     sm: "px-2.5 py-0.5 text-xs font-medium h-7",
     default: "px-3.5 py-1 text-sm font-medium h-9",
@@ -35,32 +33,38 @@ export default function StickyButton({
 
     return (
         <button
-            onPointerDown={() => {
-                isPressed
-                    ? play({ id: "activePress" })
-                    : play({ id: "unactivePress" });
-            }}
-            onPointerUp={() => {
-                isPressed
-                    ? play({ id: "activeRelease" })
-                    : play({ id: "unactiveRelease" });
-            }}
+			onPointerDown={() => {
+				isPressed ? play({ id: "activePress" }) : play({ id: "unactivePress" });
+			}}
+			onPointerUp={() => {
+				isPressed ? play({ id: "activeRelease" }) : play({ id: "unactiveRelease" });
+			}}
+			onKeyDown={(e) => {
+				if ((e.key === "Enter" || e.key === " ") && !e.repeat) {
+					isPressed ? play({ id: "activePress" }) : play({ id: "unactivePress" });
+				}
+			}}
+			onKeyUp={(e) => {
+				if ((e.key === "Enter" || e.key === " ") && !e.repeat) {
+				isPressed ? play({ id: "activeRelease" }) : play({ id: "unactiveRelease" });
+				}
+			}}
             onClick={onClick}
-            className={`group relative border-none bg-transparent cursor-pointer outline-offset-4 transition-[filter] focus:not-focus-visible:outline-hidden pt-1.5 -mt-1 ${
+            className={`group relative border-none bg-transparent cursor-pointer outline-offset-4 transition-[filter] focus:not-focus-visible:outline-hidden pt-1 -mt-0.5 ${
                 className || ""
             }`}
             {...props}
         >
             {/* Edge layer */}
             <span
-                className={`absolute inset-x-0 bottom-0 top-1.5 rounded-md border-2 border-slate-950/5 border-t-0 transition-all ${
+                className={`absolute inset-x-0 bottom-0 top-1.5 rounded-sm border-6 border-slate-950/20 border-t-0 transition-all ${
                     isPressed ? pressedColor : baseColor
                 }`}
             />
             {/* Front layer */}
             <span
-                className={`relative flex items-center justify-center border-2 rounded-md text-gray-900 will-change-transform transition-all border-slate-950/5 group-active:-translate-y-0 ${sizeClasses} ${
-                    isPressed ? "-translate-y-0.5" : "-translate-y-1.5"
+                className={`relative flex items-center justify-center border-2 rounded-sm text-gray-900 will-change-transform transition-all border-slate-950/20 group-active:-translate-y-0 ${sizeClasses} ${
+                    isPressed ? "-translate-y-0.5" : "-translate-y-1"
                 } ${isPressed ? pressedColor : baseColor}
         `}
             >
