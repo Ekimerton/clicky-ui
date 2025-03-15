@@ -12,7 +12,7 @@ export function MarketingNavbar() {
             className="
                 fixed top-6 left-1/2 transform -translate-x-1/2 z-50
                 w-11/12 max-w-5xl flex items-center px-4 py-2
-                bg-blue-950/40 border border-blue-400/20
+                bg-blue-950/40 border-2 border-blue-400/20
                 backdrop-blur-sm shadow-md rounded-xl
             "
         >
