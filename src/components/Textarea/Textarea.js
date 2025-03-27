@@ -3,9 +3,11 @@
 import React from "react";
 import useSound from "use-sound";
 import keyboardClicks from "./keyboard-edited.wav";
+import { useMute } from "@/contexts/muteProvider";
 
 export default function Textarea({ className, ...props }) {
     const [playbackRate, setPlaybackRate] = React.useState(0.75);
+    const { mute } = useMute();
     const [play] = useSound(keyboardClicks, {
         playbackRate,
         sprite: {
@@ -34,6 +36,7 @@ export default function Textarea({ className, ...props }) {
     ];
 
     const updateAndPlay = (spriteId) => {
+        if (mute) return;
         const newRate = Math.random() * 0.2 + 0.8;
         setPlaybackRate(newRate);
         play({ id: spriteId });
