@@ -14,7 +14,7 @@ export default function WheelPicker({ options }) {
     const previousIndexRef = useRef(null);
 
     // Sound effect
-    const [playClick] = useSound(wheelClick, { volume: 0.2 });
+    const [playClick] = useSound(wheelClick, { volume: 0.02 });
 
     // Calculate derived values
     const finalOffset = baseOffset + userOffset;
@@ -185,7 +185,11 @@ export default function WheelPicker({ options }) {
                     return (
                         <div
                             key={option}
-                            className={isSelected ? "flex items-center justify-center h-10 font-semibold text-gray-900" : "flex items-center justify-center h-10 text-gray-600"}
+                            className={
+                                isSelected
+                                    ? "flex items-center justify-center h-10 font-semibold text-gray-900"
+                                    : "flex items-center justify-center h-10 text-gray-600"
+                            }
                         >
                             {option}
                         </div>

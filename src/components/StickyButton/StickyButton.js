@@ -2,6 +2,7 @@
 
 import useSound from "use-sound";
 import stickyButton from "./sticky-button.wav";
+import { useMute } from "@/contexts/muteProvider";
 
 const sizeVariants = {
     sm: "px-2.5 py-0.5 text-xs font-medium h-7",
@@ -20,6 +21,7 @@ export default function StickyButton({
     onClick,
     ...props
 }) {
+    const { mute } = useMute();
     const [play] = useSound(stickyButton, {
         sprite: {
             unactivePress: [250, 50],
@@ -27,8 +29,15 @@ export default function StickyButton({
             activePress: [2680, 50],
             activeRelease: [3740, 50],
         },
-        volume: 0.3,
+        volume: 0.1,
     });
+
+    // Wrapper function to only play sound if unmuted
+    const playSound = (id) => {
+        if (!mute) {
+            play({ id });
+        }
+    };
 
     const sizeClasses = sizeVariants[size] || sizeVariants.default;
 
@@ -36,26 +45,26 @@ export default function StickyButton({
         <button
             onPointerDown={() => {
                 isPressed
-                    ? play({ id: "activePress" })
-                    : play({ id: "unactivePress" });
+                    ? playSound("activePress")
+                    : playSound("unactivePress");
             }}
             onPointerUp={() => {
                 isPressed
-                    ? play({ id: "activeRelease" })
-                    : play({ id: "unactiveRelease" });
+                    ? playSound("activeRelease")
+                    : playSound("unactiveRelease");
             }}
             onKeyDown={(e) => {
                 if ((e.key === "Enter" || e.key === " ") && !e.repeat) {
                     isPressed
-                        ? play({ id: "activePress" })
-                        : play({ id: "unactivePress" });
+                        ? playSound("activePress")
+                        : playSound("unactivePress");
                 }
             }}
             onKeyUp={(e) => {
                 if ((e.key === "Enter" || e.key === " ") && !e.repeat) {
                     isPressed
-                        ? play({ id: "activeRelease" })
-                        : play({ id: "unactiveRelease" });
+                        ? playSound("activeRelease")
+                        : playSound("unactiveRelease");
                 }
             }}
             onClick={onClick}
@@ -74,8 +83,7 @@ export default function StickyButton({
             <span
                 className={`relative flex items-center justify-center border-2 rounded-sm text-gray-900 will-change-transform transition-all border-slate-950/20 group-active:-translate-y-0 ${sizeClasses} ${
                     isPressed ? "-translate-y-0.5" : "-translate-y-1"
-                } ${isPressed ? pressedColor : baseColor}
-        `}
+                } ${isPressed ? pressedColor : baseColor}`}
             >
                 {children}
             </span>

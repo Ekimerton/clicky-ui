@@ -1,11 +1,9 @@
-"use client";
-
 import Link from "next/link";
 import StickyButton from "@/components/StickyButton/StickyButton";
-import { useState } from "react";
+import { useMute } from "@/contexts/muteProvider";
 
 export function MarketingNavbar() {
-    const [isMuted, setIsMuted] = useState(false);
+    const { mute, setMute } = useMute();
 
     return (
         <nav
@@ -17,8 +15,8 @@ export function MarketingNavbar() {
             "
         >
             {/* Site Title */}
-            <Link 
-                href="/" 
+            <Link
+                href="/"
                 className="
                     text-2xl font-semibold text-blue-100
                 "
@@ -28,8 +26,8 @@ export function MarketingNavbar() {
 
             {/* Navigation Links */}
             <div className="flex gap-8 ml-6">
-                <Link 
-                    href="/" 
+                <Link
+                    href="/"
                     className="
                         text-blue-100/70 
                         hover:text-blue-50 
@@ -38,8 +36,8 @@ export function MarketingNavbar() {
                 >
                     Home
                 </Link>
-                <Link 
-                    href="/docs" 
+                <Link
+                    href="/docs"
                     className="
                         text-blue-100/70 
                         hover:text-blue-50 
@@ -48,18 +46,19 @@ export function MarketingNavbar() {
                 >
                     Docs
                 </Link>
+                <p>{mute ? "🔇" : "🔊"}</p>
             </div>
 
             {/* Sound Toggle Button */}
             <div className="ml-auto">
-                <StickyButton 
+                <StickyButton
                     size="md"
                     baseColor="bg-slate-200"
                     pressedColor="bg-yellow-200"
-                    isPressed={!isMuted}
-                    onClick={() => setIsMuted(!isMuted)}
+                    isPressed={!mute}
+                    onClick={() => setMute(!mute)}
                 >
-                    {isMuted ? "Sound Off" : "Sound On"}
+                    {mute ? "Sound Off" : "Sound On"}
                 </StickyButton>
             </div>
         </nav>
