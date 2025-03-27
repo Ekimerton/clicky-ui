@@ -23,6 +23,7 @@ export default function Button({
             press: [250, 50],
             release: [1550, 50],
         },
+        volume: 0.3,
     });
 
     const sizeClasses = sizeVariants[size] || sizeVariants.default;
@@ -31,16 +32,16 @@ export default function Button({
         <button
             onPointerDown={() => play({ id: "press" })}
             onPointerUp={() => play({ id: "release" })}
-			onKeyDown={(e) => {
-				if ((e.key === "Enter" || e.key === " ") && !e.repeat) {
-				  play({ id: "press" });
-				}
-			  }}
-			  onKeyUp={(e) => {
-				if (e.key === "Enter" || e.key === " ") {
-				  play({ id: "release" });
-				}
-			  }}
+            onKeyDown={(e) => {
+                if ((e.key === "Enter" || e.key === " ") && !e.repeat) {
+                    play({ id: "press" });
+                }
+            }}
+            onKeyUp={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    play({ id: "release" });
+                }
+            }}
             className={`group relative border-none bg-transparent cursor-pointer outline-offset-4 transition-[filter] focus:not-focus-visible:outline-hidden transition-discrete pt-1.5 ${
                 className || ""
             }`}

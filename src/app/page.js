@@ -6,6 +6,7 @@ import StickyButton from "@/components/StickyButton/StickyButton";
 import WheelPicker from "@/components/WheelPicker/WheelPicker";
 import Textarea from "@/components/Textarea/Textarea";
 import { MarketingCard, MarketingNavbar } from "@/marketing-components";
+import MarketingScribble from "@/marketing-components/MarketingScribble";
 import { useState } from "react";
 
 export default function Home() {
@@ -69,6 +70,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <MarketingScribble />
 
         {/* Component Showcase Grid */}
         <section

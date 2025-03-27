@@ -1,7 +1,7 @@
 "use client";
 
 import useSound from "use-sound";
-import normalButton from "./sticky-button.wav";
+import stickyButton from "./sticky-button.wav";
 
 const sizeVariants = {
     sm: "px-2.5 py-0.5 text-xs font-medium h-7",
@@ -20,35 +20,44 @@ export default function StickyButton({
     onClick,
     ...props
 }) {
-    const [play] = useSound(normalButton, {
+    const [play] = useSound(stickyButton, {
         sprite: {
             unactivePress: [250, 50],
             unactiveRelease: [1550, 50],
             activePress: [2680, 50],
             activeRelease: [3740, 50],
         },
+        volume: 0.3,
     });
 
     const sizeClasses = sizeVariants[size] || sizeVariants.default;
 
     return (
         <button
-			onPointerDown={() => {
-				isPressed ? play({ id: "activePress" }) : play({ id: "unactivePress" });
-			}}
-			onPointerUp={() => {
-				isPressed ? play({ id: "activeRelease" }) : play({ id: "unactiveRelease" });
-			}}
-			onKeyDown={(e) => {
-				if ((e.key === "Enter" || e.key === " ") && !e.repeat) {
-					isPressed ? play({ id: "activePress" }) : play({ id: "unactivePress" });
-				}
-			}}
-			onKeyUp={(e) => {
-				if ((e.key === "Enter" || e.key === " ") && !e.repeat) {
-				isPressed ? play({ id: "activeRelease" }) : play({ id: "unactiveRelease" });
-				}
-			}}
+            onPointerDown={() => {
+                isPressed
+                    ? play({ id: "activePress" })
+                    : play({ id: "unactivePress" });
+            }}
+            onPointerUp={() => {
+                isPressed
+                    ? play({ id: "activeRelease" })
+                    : play({ id: "unactiveRelease" });
+            }}
+            onKeyDown={(e) => {
+                if ((e.key === "Enter" || e.key === " ") && !e.repeat) {
+                    isPressed
+                        ? play({ id: "activePress" })
+                        : play({ id: "unactivePress" });
+                }
+            }}
+            onKeyUp={(e) => {
+                if ((e.key === "Enter" || e.key === " ") && !e.repeat) {
+                    isPressed
+                        ? play({ id: "activeRelease" })
+                        : play({ id: "unactiveRelease" });
+                }
+            }}
             onClick={onClick}
             className={`group relative border-none bg-transparent cursor-pointer outline-offset-4 transition-[filter] focus:not-focus-visible:outline-hidden pt-1 -mt-0.5 ${
                 className || ""

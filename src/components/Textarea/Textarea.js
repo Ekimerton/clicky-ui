@@ -1,15 +1,65 @@
 "use client";
 
-import { useRef } from "react";
+import React from "react";
+import useSound from "use-sound";
+import keyboardClicks from "./keyboard-edited.wav";
 
 export default function Textarea({ className, ...props }) {
-    const handleKeyDown = (e) => {
-        console.log("Key pressed:", e.key);
+    const [playbackRate, setPlaybackRate] = React.useState(0.75);
+    const [play] = useSound(keyboardClicks, {
+        playbackRate,
+        sprite: {
+            letterPress: [2505, 135],
+            letterRelease: [2690, 125],
+            spacePress: [7650, 180],
+            spaceRelease: [7850, 130],
+            returnPress: [11850, 130],
+            returnRelease: [11980, 140],
+        },
+        volume: 1,
+    });
+
+    const RETURN_KEYS = [
+        "Tab",
+        "CapsLock",
+        "Shift",
+        "Fn",
+        "Control",
+        "Alt",
+        "Meta",
+        "Enter",
+        "Backspace",
+        "Delete",
+        "Escape",
+    ];
+
+    const updateAndPlay = (spriteId) => {
+        const newRate = Math.random() * 0.2 + 0.8;
+        setPlaybackRate(newRate);
+        play({ id: spriteId });
     };
 
-	const handleKeyUp = (e) => {
-		console.log("Key released:", e.key);
-	};
+    const handleKeyDown = (e) => {
+        if (e.repeat) return;
+        if (e.key === " ") {
+            updateAndPlay("spacePress");
+        } else if (RETURN_KEYS.includes(e.key)) {
+            updateAndPlay("returnPress");
+        } else {
+            updateAndPlay("letterPress");
+        }
+    };
+
+    const handleKeyUp = (e) => {
+        if (e.repeat) return;
+        if (e.key === " ") {
+            updateAndPlay("spaceRelease");
+        } else if (RETURN_KEYS.includes(e.key)) {
+            updateAndPlay("returnRelease");
+        } else {
+            updateAndPlay("letterRelease");
+        }
+    };
 
     return (
         <textarea
