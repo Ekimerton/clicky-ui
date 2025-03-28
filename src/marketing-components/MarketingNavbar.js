@@ -1,6 +1,6 @@
 import Link from "next/link";
 import StickyButton from "@/components/StickyButton/StickyButton";
-import { useMute } from "@/contexts/muteProvider";
+import { useMute } from "@/contexts/MuteProvider";
 
 export function MarketingNavbar() {
     const { mute, setMute } = useMute();

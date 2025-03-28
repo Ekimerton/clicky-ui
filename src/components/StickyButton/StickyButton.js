@@ -2,7 +2,7 @@
 
 import useSound from "use-sound";
 import stickyButton from "./sticky-button.wav";
-import { useMute } from "@/contexts/muteProvider";
+import { useMute } from "@/contexts/MuteProvider";
 
 const sizeVariants = {
     sm: "px-2.5 py-0.5 text-xs font-medium h-7",

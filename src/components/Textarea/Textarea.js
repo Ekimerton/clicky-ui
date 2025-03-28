@@ -3,7 +3,7 @@
 import React from "react";
 import useSound from "use-sound";
 import keyboardClicks from "./keyboard-edited.wav";
-import { useMute } from "@/contexts/muteProvider";
+import { useMute } from "@/contexts/MuteProvider";
 
 export default function Textarea({ className, ...props }) {
     const [playbackRate, setPlaybackRate] = React.useState(0.75);
