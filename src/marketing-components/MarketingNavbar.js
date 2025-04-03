@@ -28,7 +28,6 @@ export function MarketingNavbar() {
       <div className="ml-auto">
         <Button
           size="sm"
-          baseColor="bg-slate-200"
           isPressed={!mute}
           onClick={() => setMute(!mute)}
           ignoreMute={true}

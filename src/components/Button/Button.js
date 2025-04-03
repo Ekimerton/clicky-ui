@@ -79,7 +79,7 @@ export default function Button({
         }
       }}
       onClick={onClick}
-      className={`group relative border-none bg-transparent cursor-pointer outline-offset-4 transition-[filter] focus:not-focus-visible:outline-hidden transition-discrete pt-1 ${
+      className={`group w-fit relative border-none bg-transparent cursor-pointer outline-offset-4 transition-[filter] focus:not-focus-visible:outline-hidden transition-discrete pt-1 ${
         className || ""
       }`}
       {...props}
