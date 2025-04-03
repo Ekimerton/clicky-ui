@@ -15,9 +15,10 @@ export default function Button({
   children,
   className,
   baseColor = "bg-slate-50",
-  pressedColor = "bg-slate-50",
+  pressedColor = baseColor,
   size = "default", // sm | default | lg | icon
   isPressed,
+  lightColor = null,
   onClick,
   ignoreMute = false,
   ...props
@@ -33,7 +34,6 @@ export default function Button({
     volume: 0.1,
   });
 
-  // Wrapper function to only play sound if unmuted or ignoreMute is true
   const playSound = (id) => {
     if (!mute || ignoreMute) {
       play({ id });
@@ -96,6 +96,15 @@ export default function Button({
           isPressed ? "-translate-y-0.5" : "-translate-y-1"
         } ${isPressed ? pressedColor : baseColor}`}
       >
+        {lightColor && (
+          <div
+            className={`w-2 h-2 rounded-full transition-all duration-200 mr-2 ${
+              isPressed
+                ? `${lightColor} shadow-[0_0_8px_rgba(249,115,22,0.5)]`
+                : `${lightColor}/30`
+            }`}
+          />
+        )}
         {children}
       </span>
     </button>

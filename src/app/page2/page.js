@@ -7,9 +7,9 @@ import { useMute } from "@/contexts/MuteProvider";
 
 const ComponentCard = ({ title, number, description, children, isDashed }) => (
   <div
-    className={`p-4 bg-white border ${
-      isDashed ? "border-dashed" : ""
-    } border-neutral-200 rounded-none flex flex-col justify-between h-[320px]`}
+    className={`p-4 bg-white border border-neutral-200 ${
+      isDashed ? "border-dashed border-neutral-50" : ""
+    } rounded-none flex flex-col justify-between h-[320px]`}
   >
     <div>
       <div className="flex justify-between items-start mb-4">
@@ -31,6 +31,17 @@ export default function Page2() {
   const [regularButtonStates, setRegularButtonStates] = useState([false]);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isWebButtonPressed, setIsWebButtonPressed] = useState(false);
+  const [text, setText] = useState("");
+
+  const triggerAnimation = () => {
+    setIsWebButtonPressed(true);
+    setTimeout(() => setIsWebButtonPressed(false), 200);
+  };
+
+  const handleTextChange = (e) => {
+    setText(e.target.value);
+    triggerAnimation();
+  };
 
   return (
     <div className="min-h-screen bg-neutral-50">
@@ -46,19 +57,14 @@ export default function Page2() {
                 <Button
                   size="sm"
                   isPressed={!mute}
-                  onClick={() => setMute(!mute)}
+                  onClick={() => {
+                    setMute(!mute);
+                    triggerAnimation();
+                  }}
                   ignoreMute={true}
+                  lightColor={"bg-orange-500"}
                 >
-                  <div className="flex items-center gap-2">
-                    <div
-                      className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                        mute
-                          ? "bg-orange-500/30"
-                          : "bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]"
-                      }`}
-                    />
-                    Sound On
-                  </div>
+                  Sound On
                 </Button>
               </div>
               <div>
@@ -98,13 +104,7 @@ export default function Page2() {
                 number="1"
                 description="Interactive button with sound cues. Supports press effects, size, and color customization."
               >
-                <Button
-                  size="md"
-                  onClick={() => {
-                    setIsWebButtonPressed(true);
-                    setTimeout(() => setIsWebButtonPressed(false), 200);
-                  }}
-                >
+                <Button size="md" onClick={triggerAnimation}>
                   Try me
                 </Button>
               </ComponentCard>
@@ -116,13 +116,15 @@ export default function Page2() {
               >
                 <Button
                   isPressed={regularButtonStates[0]}
-                  onClick={() =>
+                  lightColor={"bg-orange-500"}
+                  onClick={() => {
                     setRegularButtonStates((prev) => {
                       const next = [...prev];
                       next[0] = !next[0];
                       return next;
-                    })
-                  }
+                    });
+                    triggerAnimation();
+                  }}
                 >
                   Toggle me
                 </Button>
@@ -135,7 +137,9 @@ export default function Page2() {
               >
                 <Textarea
                   placeholder="Type here..."
-                  className="bg-white border-neutral-200 text-neutral-900 placeholder-neutral-400"
+                  className="h-16"
+                  value={text}
+                  onChange={handleTextChange}
                 />
               </ComponentCard>
 
@@ -149,7 +153,11 @@ export default function Page2() {
                     size="icon"
                     isPressed={!mute}
                     baseColor="bg-red-100"
-                    onClick={() => setMute(!mute)}
+                    onClick={() => {
+                      setMute(!mute);
+                      triggerAnimation();
+                    }}
+                    ignoreMute
                   >
                     {mute ? "🔇" : "🔊"}
                   </Button>
@@ -158,7 +166,10 @@ export default function Page2() {
                     baseColor="bg-yellow-100"
                     pressedColor="bg-blue-100"
                     isPressed={isDarkMode}
-                    onClick={() => setIsDarkMode(!isDarkMode)}
+                    onClick={() => {
+                      setIsDarkMode(!isDarkMode);
+                      triggerAnimation();
+                    }}
                   >
                     {isDarkMode ? "🌚" : "🌝"}
                   </Button>
