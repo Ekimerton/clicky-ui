@@ -19,7 +19,7 @@ const Textarea = forwardRef(
         returnPress: [11850, 130],
         returnRelease: [11980, 140],
       },
-      volume: 1,
+      volume: 2,
     });
 
     const RETURN_KEYS = [

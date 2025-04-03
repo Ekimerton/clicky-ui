@@ -31,7 +31,7 @@ export default function Button({
       activePress: [2680, 50],
       activeRelease: [3740, 50],
     },
-    volume: 0.1,
+    volume: 0.2,
   });
 
   const playSound = (id) => {
