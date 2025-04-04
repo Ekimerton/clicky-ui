@@ -55,7 +55,7 @@ export default function Page2() {
   return (
     <div className="min-h-screen bg-neutral-50">
       <main className="relative xl:pt-8 flex items-center">
-        <div className="bg-neutral-100 flex flex-col xl:flex-row justify-center gap-8 max-w-7xl w-full mx-auto border-gray-200 xl:border-2 p-8 xl:rounded-md">
+        <div className="bg-neutral-100 flex flex-col xl:flex-row justify-center gap-8 max-w-7xl w-full mx-auto border-gray-200 xl:border-2 p-4 xl:p-8 xl:rounded-md">
           {/* Left Section */}
           <div className="flex flex-col gap-12 w-full xl:w-[400px]">
             <div className="flex items-center justify-between">
@@ -73,7 +73,7 @@ export default function Page2() {
               </Button>
             </div>
             <div>
-              <h2 className="text-4xl xl:text-5xl font-serif mb-4 text-neutral-900 tracking-tight mt-8 text-center">
+              <h2 className="text-4xl xl:text-5xl font-serif mb-4 text-neutral-900 tracking-tight mt-4 xl:mt-8 text-center">
                 The Audio-Driven UI Library
               </h2>
               <p className="text-neutral-600 leading-relaxed text-center">
@@ -82,10 +82,11 @@ export default function Page2() {
             </div>
             <Button
               className="mx-auto -mt-4"
-              baseColor="bg-orange-500"
-              pressedColor="bg-orange-600"
+              baseColor="bg-orange-500 text-white"
+              pressedColor="bg-orange-500"
+              asChild
             >
-              <span className="font-medium text-white">Star on GitHub ⭐</span>
+              <a href="https://google.com">Star on Github ⭐️</a>
             </Button>
             <div
               className={`hidden xl:block w-56 h-56 mx-auto relative overflow-hidden rounded-full mt-4 transition-transform duration-200 ${
