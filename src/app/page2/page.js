@@ -4,36 +4,8 @@ import { useState } from "react";
 import Button from "@/components/Button/Button";
 import Textarea from "@/components/Textarea/Textarea";
 import { useMute } from "@/contexts/MuteProvider";
-
-const ComponentCard = ({
-  title,
-  number,
-  description,
-  children,
-  isDashed,
-  standout,
-}) => (
-  <div
-    className={`p-4 ${
-      standout
-        ? "bg-transparent border border-dashed border-neutral-300"
-        : "bg-white border border-neutral-200"
-    } rounded-none flex flex-col justify-between h-[320px]`}
-  >
-    <div>
-      <div className="flex justify-between items-start mb-4">
-        <h3 className="text-lg font-normal text-neutral-900">{title}</h3>
-        <span className="text-orange-500 font-mono text-sm">
-          {number.padStart(2, "0")}
-        </span>
-      </div>
-      <p className="text-sm text-neutral-600 font-light">{description}</p>
-    </div>
-    <div className="pt-4 border-t border-neutral-200 flex justify-center items-center h-[80px]">
-      {children}
-    </div>
-  </div>
-);
+import ComponentCard from "@/marketing-components/ComponentCard";
+import EmailSignup from "@/marketing-components/EmailSignup";
 
 export default function Page2() {
   const { mute, setMute } = useMute();
@@ -86,7 +58,9 @@ export default function Page2() {
               pressedColor="bg-orange-500"
               asChild
             >
-              <a href="https://google.com">Star on Github ⭐️</a>
+              <a href="https://github.com/Ekimerton/clicky-ui" target="_blank">
+                Star on Github ⭐️
+              </a>
             </Button>
             <div
               className={`hidden xl:block w-56 h-56 mx-auto relative overflow-hidden rounded-full mt-4 transition-transform duration-200 ${
@@ -180,23 +154,7 @@ export default function Page2() {
               </div>
             </ComponentCard>
 
-            <ComponentCard
-              title="Play it by Ear"
-              number="??"
-              description="Sign up to receive sound design tips and UI best practices. Delivered occasionally."
-              standout
-            >
-              <form className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="you@example.com"
-                  className="px-3 py-2 bg-white border border-neutral-200 text-neutral-900 placeholder-neutral-400 w-42 rounded-none"
-                />
-                <Button size="icon" baseColor="bg-orange-500 text-white">
-                  →
-                </Button>
-              </form>
-            </ComponentCard>
+            <EmailSignup />
           </div>
         </div>
       </main>
