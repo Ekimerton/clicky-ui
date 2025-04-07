@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ClickyUI – A Mini UI Library
 
-## Getting Started
+## Overview
+ClickyUI is a lightweight, audio-driven UI library that offers interactive components with subtle audio feedback to enhance user engagement. It’s built for quick and easy integration into your projects.
 
-First, run the development server:
+## Component Structure
+- **Components**: Found in the `components` directory, including:
+  - **Button**: A customizable button component with interactive audio cues.
+  - **Textarea**: An input field that provides tactile audio feedback with every keystroke.
+  - **WheelPicker**: A selector component that plays sounds during scroll and click actions.
+  - *More coming soon!*
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Usage
+- Copy the required component folders from the `components` directory into your project. Copying the whole folder ensures you grab all the logic and sound files at once.
+- Import the components into your code and integrate them as needed. For example, import the Button and Textarea components directly into your React components.
+- **Important:** For the ClickyUI components to work correctly, you must include the MuteProvider.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## MuteProvider (Mandatory – READ SO YOUR CODE CAN RUN)
+The `MuteProvider` located in `contexts/MuteProvider.js` is essential for managing audio feedback across the UI. Without it, the code will not run properly. Make sure to wrap your application (or the relevant component subtree) with the MuteProvider to enable audio settings and accessibility features.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+If you're insistent on skipping this step, you can comment `const {mute} = useMute();` and replace it with `const {mute} = true;` 
 
-## Learn More
+## Customization
+The components are built to be flexible. Customize styles and behaviors by modifying the code or adding your own CSS. Inline comments in the component files provide guidance for further customization.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ClickyUI offers a simple, accessible, and interactive solution to elevate your user interface with minimal configuration.

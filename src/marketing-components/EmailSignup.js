@@ -36,7 +36,7 @@ const EmailSignup = () => {
     <ComponentCard
       title="Play it by Ear"
       number="??"
-      description="Receive occasional sound design tips and UI insights directly to your inbox—no spam."
+      description="Receive updates about new components and occasional sound design tips directly to your inbox. No spam."
       standout
     >
       <form onSubmit={handleSubscribe} className="flex gap-2">
@@ -44,7 +44,7 @@ const EmailSignup = () => {
           type="email"
           required
           placeholder="you@example.com"
-          className="px-3 py-2 bg-white border border-neutral-200 text-neutral-900 placeholder-neutral-400 w-42 rounded-none"
+          className="px-3 py-2 bg-white border border-neutral-200 text-neutral-900 placeholder-neutral-400 w-42 rounded-none text-sm"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
