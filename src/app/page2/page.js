@@ -27,7 +27,7 @@ export default function Page2() {
   return (
     <div className="min-h-screen bg-neutral-50">
       <main className="relative xl:pt-8 flex items-center">
-        <div className="bg-neutral-100 flex flex-col xl:flex-row justify-center gap-8 max-w-7xl w-full mx-auto border-gray-200 xl:border-2 p-4 xl:p-8 xl:rounded-md">
+        <div className="bg-neutral-100 flex flex-col xl:flex-row justify-center gap-8 max-w-7xl w-full mx-auto border-gray-200 xl:border-2 p-4 xl:p-8 xl:rounded-md pb-8">
           {/* Left Section */}
           <div className="flex flex-col gap-12 w-full xl:w-[400px]">
             <div className="flex items-center justify-between">
@@ -80,7 +80,7 @@ export default function Page2() {
             <ComponentCard
               title="Web Button"
               number="1"
-              description="Interactive button with sound cues. Supports press effects, size, and color customization."
+              description="Interactive button with crisp audio feedback. Plays subtle sounds on press and release actions."
             >
               <Button size="md" onClick={triggerAnimation}>
                 Try me
@@ -90,7 +90,7 @@ export default function Page2() {
             <ComponentCard
               title="Sticky Button"
               number="2"
-              description="Toggle-style button that sticks on press. Accepts `isPressed` prop and supports sound themes."
+              description="Toggle-style button with audible state changes. Plays distinct sounds when toggling on or off."
             >
               <Button
                 isPressed={regularButtonStates[0]}
@@ -111,7 +111,7 @@ export default function Page2() {
             <ComponentCard
               title="Textarea"
               number="3"
-              description="Styled input area with audible feedback per keystroke. Pass className for full customization."
+              description="Input field providing tactile audio feedback per keystroke. Emits different sounds for typing interactions."
             >
               <Textarea
                 placeholder="Type here..."
@@ -124,13 +124,14 @@ export default function Page2() {
             <ComponentCard
               title="Themed Buttons"
               number="4"
-              description="Try sticky buttons with theming. Change color, size, and pressed states interactively."
+              description="Specialized buttons designed for toggling app states like dark mode or mute. Provides immediate visual and audio feedback."
             >
               <div className="flex gap-2">
                 <Button
                   size="icon"
                   isPressed={!mute}
                   baseColor="bg-red-100"
+                  pressedColor="bg-slate-50"
                   onClick={() => {
                     setMute(!mute);
                     triggerAnimation();
@@ -141,7 +142,6 @@ export default function Page2() {
                 </Button>
                 <Button
                   size="icon"
-                  baseColor="bg-yellow-100"
                   pressedColor="bg-blue-100"
                   isPressed={isDarkMode}
                   onClick={() => {

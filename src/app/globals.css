@@ -37,13 +37,13 @@
 
 @layer utilities {
   :root {
-    --background: #0B3D91;
+    --background: #fafafa;
     --foreground: #171717;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --background: #0B3D91;
+      --background: #fafafa;
       --foreground: #ededed;
     }
   }

@@ -36,7 +36,7 @@ const EmailSignup = () => {
     <ComponentCard
       title="Play it by Ear"
       number="??"
-      description="Sign up to receive sound design tips and UI best practices. Delivered occasionally."
+      description="Receive occasional sound design tips and UI insights directly to your inbox—no spam."
       standout
     >
       <form onSubmit={handleSubscribe} className="flex gap-2">

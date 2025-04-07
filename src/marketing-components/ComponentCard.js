@@ -1,17 +1,10 @@
-const ComponentCard = ({
-  title,
-  number,
-  description,
-  children,
-  isDashed,
-  standout,
-}) => (
+const ComponentCard = ({ title, number, description, children, standout }) => (
   <div
     className={`p-4 ${
       standout
         ? "bg-transparent border border-dashed border-neutral-300"
         : "bg-white border border-neutral-200"
-    } rounded-none flex flex-col justify-between h-[320px]`}
+    } rounded-none flex flex-col justify-between h-[320px] max-lg:h-[240px]`}
   >
     <div>
       <div className="flex justify-between items-start mb-4">
@@ -20,9 +13,13 @@ const ComponentCard = ({
           {number.padStart(2, "0")}
         </span>
       </div>
-      <p className="text-sm text-neutral-600 font-light">{description}</p>
+      {typeof description === "string" ? (
+        <p className="text-sm text-neutral-600 font-light">{description}</p>
+      ) : (
+        description
+      )}
     </div>
-    <div className="pt-4 border-t border-neutral-200 flex justify-center items-center h-[80px]">
+    <div className="pt-4 flex justify-center items-center h-[80px]">
       {children}
     </div>
   </div>
