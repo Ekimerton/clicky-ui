@@ -16,7 +16,7 @@ ClickyUI is a lightweight, audio-driven UI library that offers interactive compo
 - **Important:** For the ClickyUI components to work correctly, you must include the MuteProvider.
 
 
-## MuteProvider (Mandatory – READ SO YOUR CODE CAN RUN)
+### MuteProvider (Mandatory – READ SO YOUR CODE CAN RUN)
 The `MuteProvider` located in `contexts/MuteProvider.js` is essential for managing audio feedback across the UI. Without it, the code will not run properly. Make sure to wrap your application (or the relevant component subtree) with the MuteProvider to enable audio settings and accessibility features.
 
 If you're insistent on skipping this step, you can comment `const {mute} = useMute();` and replace it with `const {mute} = true;` 

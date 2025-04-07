@@ -1,270 +1,162 @@
 "use client";
 
-import Link from "next/link";
-import Button from "@/components/Button/Button";
-import WheelPicker from "@/components/WheelPicker/WheelPicker";
-import Textarea from "@/components/Textarea/Textarea";
-import { MarketingCard, MarketingNavbar } from "@/marketing-components";
-import MarketingScribble from "@/marketing-components/MarketingScribble";
 import { useState } from "react";
+import Button from "@/components/Button/Button";
+import Textarea from "@/components/Textarea/Textarea";
+import { useMute } from "@/contexts/MuteProvider";
+import ComponentCard from "@/marketing-components/ComponentCard";
+import EmailSignup from "@/marketing-components/EmailSignup";
 
-export default function Home() {
-  const [regularButtonStates, setRegularButtonStates] = useState([
-    false,
-    false,
-    false,
-    false,
-  ]);
-  const [themedButtonStates, setThemedButtonStates] = useState([
-    false,
-    false,
-    false,
-  ]);
+export default function Page() {
+  const { mute, setMute } = useMute();
+  const [regularButtonStates, setRegularButtonStates] = useState([false]);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isWebButtonPressed, setIsWebButtonPressed] = useState(false);
+  const [text, setText] = useState("");
+
+  const triggerAnimation = () => {
+    setIsWebButtonPressed(true);
+    setTimeout(() => setIsWebButtonPressed(false), 200);
+  };
+
+  const handleTextChange = (e) => {
+    setText(e.target.value);
+    triggerAnimation();
+  };
 
   return (
-    <div className="min-h-screen relative overflow-hidden text-blue-100 scroll-smooth">
-      {/* Blueprint-Style Grid Background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundColor: "#0B3D91",
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)
-          `,
-          backgroundSize: "20px 20px",
-        }}
-      />
-
-      <MarketingNavbar />
-
-      <main className="relative pt-32">
-        {/* Hero Section */}
-        <section className="py-24 px-8 max-md:py-12">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-serif mb-4 text-blue-50 tracking-tight drop-shadow-lg">
-              The Audio-Driven UI Library
-            </h1>
-            <p className="text-lg text-blue-100/90 leading-relaxed max-w-2xl mx-auto">
-              Elevate your website with subtle audio feedback that delights
-              users.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-              {/* Star on GitHub button */}
-              <Link
-                href="https://github.com/ekimerton/clicky-ui"
-                target="_blank"
-                rel="noopener noreferrer"
+    <div className="min-h-screen bg-neutral-50">
+      <main className="relative xl:pt-8 flex items-center">
+        <div className="bg-neutral-100 flex flex-col xl:flex-row justify-center gap-8 max-w-7xl w-full mx-auto border-gray-200 xl:border-2 p-4 xl:p-8 xl:rounded-md pb-8">
+          {/* Left Section */}
+          <div className="flex flex-col gap-12 w-full xl:w-[400px]">
+            <div className="flex items-center justify-between">
+              <h1 className="text-xl font-light text-neutral-900 font-mono">
+                ClickyUI
+              </h1>
+              <Button
+                size="sm"
+                isPressed={!mute}
+                onClick={() => setMute(!mute)}
+                ignoreMute={true}
+                lightColor="bg-orange-500"
               >
-                <Button size="md" baseColor="bg-blue-300">
-                  Star on GitHub ⭐
-                </Button>
-              </Link>
-              {/* Scroll to Components button */}
-              <a href="#componentShowcase" className="inline-block">
-                <Button size="md" baseColor="bg-blue-300">
-                  About the Project
-                </Button>
+                Sound On
+              </Button>
+            </div>
+            <div>
+              <h2 className="text-4xl xl:text-5xl font-serif mb-4 text-neutral-900 tracking-tight mt-4 xl:mt-8 text-center">
+                The Audio-Driven UI Library
+              </h2>
+              <p className="text-neutral-600 leading-relaxed text-center">
+                Elevate your website with subtle audio feedback.
+              </p>
+            </div>
+            <Button
+              className="mx-auto -mt-4"
+              baseColor="bg-orange-500 text-white"
+              pressedColor="bg-orange-500"
+              asChild
+            >
+              <a href="https://github.com/Ekimerton/clicky-ui" target="_blank">
+                Star on Github ⭐️
               </a>
+            </Button>
+            <div
+              className={`hidden xl:block w-56 h-56 mx-auto relative overflow-hidden rounded-full mt-4 transition-transform duration-200 ${
+                isWebButtonPressed ? "scale-102" : "scale-100"
+              }`}
+            >
+              <img
+                src="/ooorganize.svg"
+                alt="Speaker pattern"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
-        </section>
 
-        <MarketingScribble />
-
-        {/* Component Showcase Grid */}
-        <section
-          id="componentShowcase"
-          className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 px-8 py-24"
-        >
-          <MarketingCard
-            className="bg-blue-950/40 border border-blue-400/20 backdrop-blur-sm"
-            title="Web Button"
-            description="A delightful button component with subtle sound feedback on interactions"
-            githubLink="https://github.com/ekimerton/clicky-ui/blob/main/src/components/Button/Button.js"
-          >
-            <Button size="lg">Large</Button>
-            <Button>Default</Button>
-            <Button size="sm">Small</Button>
-            <Button size="icon">👋</Button>
-          </MarketingCard>
-
-          <MarketingCard
-            className="bg-blue-950/40 border border-blue-400/20 backdrop-blur-sm"
-            title="Sticky Button"
-            description="A playful button that sticks and unsticks with satisfying sound effects"
-            githubLink="https://github.com/ekimerton/clicky-ui/blob/main/src/components/Button/Button.js"
-          >
-            <Button
-              size="lg"
-              isPressed={regularButtonStates[0]}
-              onClick={() =>
-                setRegularButtonStates((prev) => {
-                  const next = [...prev];
-                  next[0] = !next[0];
-                  return next;
-                })
-              }
+          {/* Right Section - Component Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 w-full xl:w-[800px] max-lg:pb-4">
+            <ComponentCard
+              title="Web Button"
+              number="1"
+              description="Interactive button with crisp audio feedback. Plays subtle sounds on press and release actions."
             >
-              Large
-            </Button>
-            <Button
-              isPressed={regularButtonStates[1]}
-              onClick={() =>
-                setRegularButtonStates((prev) => {
-                  const next = [...prev];
-                  next[1] = !next[1];
-                  return next;
-                })
-              }
-            >
-              Default
-            </Button>
-            <Button
-              size="sm"
-              isPressed={regularButtonStates[2]}
-              onClick={() =>
-                setRegularButtonStates((prev) => {
-                  const next = [...prev];
-                  next[2] = !next[2];
-                  return next;
-                })
-              }
-            >
-              Small
-            </Button>
-            <Button
-              size="icon"
-              isPressed={regularButtonStates[3]}
-              onClick={() =>
-                setRegularButtonStates((prev) => {
-                  const next = [...prev];
-                  next[3] = !next[3];
-                  return next;
-                })
-              }
-            >
-              🎯
-            </Button>
-          </MarketingCard>
-
-          <MarketingCard
-            className="bg-blue-950/40 border border-blue-400/20 backdrop-blur-sm"
-            title="Themed Button"
-            description="Customizable sticky button with theming support and sound effects"
-            githubLink="https://github.com/ekimerton/clicky-ui/blob/main/src/components/Button/Button.js"
-          >
-            <Button
-              size="icon"
-              baseColor="bg-blue-100"
-              pressedColor="bg-blue-200"
-              isPressed={themedButtonStates[0]}
-              onClick={() =>
-                setThemedButtonStates((prev) => {
-                  const next = [...prev];
-                  next[0] = !next[0];
-                  return next;
-                })
-              }
-            >
-              🌊
-            </Button>
-            <Button
-              size="icon"
-              baseColor="bg-blue-100"
-              pressedColor="bg-blue-200"
-              isPressed={themedButtonStates[1]}
-              onClick={() =>
-                setThemedButtonStates((prev) => {
-                  const next = [...prev];
-                  next[1] = !next[1];
-                  return next;
-                })
-              }
-            >
-              🌴
-            </Button>
-            <Button
-              size="icon"
-              baseColor="bg-blue-100"
-              pressedColor="bg-blue-200"
-              isPressed={themedButtonStates[2]}
-              onClick={() =>
-                setThemedButtonStates((prev) => {
-                  const next = [...prev];
-                  next[2] = !next[2];
-                  return next;
-                })
-              }
-            >
-              🌿
-            </Button>
-          </MarketingCard>
-
-          {/*
-                    <MarketingCard
-                        className="bg-blue-950/40 border border-blue-400/20 backdrop-blur-sm"
-                        title="Number Wheel"
-                        description="An intuitive wheel picker with tactile sound feedback on rotation"
-                        githubLink="https://github.com/ekimerton/clicky-ui/blob/main/src/components/WheelPicker/WheelPicker.js"
-                    >
-                        <WheelPicker
-                            options={[
-                                "1",
-                                "2",
-                                "3",
-                                "4",
-                                "5",
-                                "6",
-                                "7",
-                                "8",
-                                "9",
-                                "10",
-                            ]}
-                            initialValue="3"
-                        />
-                    </MarketingCard>
-					*/}
-
-          <MarketingCard
-            className="bg-blue-950/40 border border-blue-400/20 backdrop-blur-sm"
-            title="Clicky Textarea"
-            description="A responsive textarea with mechanical keyboard-like sound effects"
-            githubLink="https://github.com/ekimerton/clicky-ui/blob/main/src/components/Textarea/Textarea.js"
-          >
-            <Textarea placeholder="Type something..." />
-          </MarketingCard>
-        </section>
-
-        {/* Email Subscription Section */}
-        <section className="px-8 pb-16">
-          <div className="max-w-xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-semibold text-blue-50 mb-4">
-              Play it by ear
-            </h2>
-            <p className="text-blue-100/90 mb-6">
-              Sign up for occasional updates, tips, and best practices on making
-              your sites interactions resonate with your audience.
-            </p>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                // Handle form submission here
-              }}
-              className="flex flex-col items-center space-y-3"
-            >
-              <input
-                type="email"
-                required
-                placeholder="you@example.com"
-                className="w-full max-w-md px-4 py-2 rounded-md border border-blue-400 bg-blue-100 text-blue-900 placeholder-blue-500"
-              />
-              <Button size="lg" type="submit">
-                Subscribe
+              <Button size="md" onClick={triggerAnimation}>
+                Try me
               </Button>
-            </form>
+            </ComponentCard>
+
+            <ComponentCard
+              title="Sticky Button"
+              number="2"
+              description="Toggle-style button with audible state changes. Plays distinct sounds when toggling on or off."
+            >
+              <Button
+                isPressed={regularButtonStates[0]}
+                lightColor="bg-orange-500"
+                onClick={() => {
+                  setRegularButtonStates((prev) => {
+                    const next = [...prev];
+                    next[0] = !next[0];
+                    return next;
+                  });
+                  triggerAnimation();
+                }}
+              >
+                Toggle me
+              </Button>
+            </ComponentCard>
+
+            <ComponentCard
+              title="Textarea"
+              number="3"
+              description="Input field providing tactile audio feedback per keystroke. Emits different sounds for typing interactions."
+            >
+              <Textarea
+                placeholder="Type here..."
+                className="h-16"
+                value={text}
+                onChange={handleTextChange}
+              />
+            </ComponentCard>
+
+            <ComponentCard
+              title="Themed Buttons"
+              number="4"
+              description="Specialized buttons designed for toggling app states like dark mode or mute. Provides immediate visual and audio feedback."
+            >
+              <div className="flex gap-2">
+                <Button
+                  size="icon"
+                  isPressed={!mute}
+                  baseColor="bg-red-100"
+                  pressedColor="bg-slate-50"
+                  onClick={() => {
+                    setMute(!mute);
+                    triggerAnimation();
+                  }}
+                  ignoreMute
+                >
+                  {mute ? "🔇" : "🔊"}
+                </Button>
+                <Button
+                  size="icon"
+                  pressedColor="bg-blue-100"
+                  isPressed={isDarkMode}
+                  onClick={() => {
+                    setIsDarkMode(!isDarkMode);
+                    triggerAnimation();
+                  }}
+                >
+                  {isDarkMode ? "🌚" : "🌝"}
+                </Button>
+              </div>
+            </ComponentCard>
+
+            <EmailSignup />
           </div>
-        </section>
+        </div>
       </main>
     </div>
   );
