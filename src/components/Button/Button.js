@@ -18,9 +18,9 @@ export default function Button({
   className,
   baseColor = "bg-slate-50",
   pressedColor = baseColor,
-  size = "default", // sm | default | lg | icon
+  size = "default",
   isPressed,
-  lightColor = null,
+  lightColor,
   onClick,
   ignoreMute = false,
   ...props
@@ -86,90 +86,65 @@ export default function Button({
     onClick: onClick,
   };
 
-  // Outer styling classes
-  const outerClass =
-    `group w-fit relative border-none bg-transparent cursor-pointer ` +
-    `outline-offset-4 transition-[filter] focus:not-focus-visible:outline-hidden ` +
-    `transition-discrete pt-1 ${className || ""}`;
+  const outerClass = `group w-fit relative border-none bg-transparent cursor-pointer outline-offset-4 transition-[filter] focus:not-focus-visible:outline-hidden transition-discrete pt-1 ${
+    className || ""
+  }`;
 
-  // If asChild is true, clone the single child and inject our structure and event handlers.
+  const renderLightIndicator = () => {
+    if (!lightColor) return null;
+    return (
+      <div className="relative mr-2 flex items-center justify-center">
+        {isPressed && (
+          <>
+            <div
+              className={`absolute w-3 h-3 rounded-full ${lightColor} opacity-30 blur-xs`}
+            />
+          </>
+        )}
+        <div
+          className={`w-2 h-2 rounded-full transition-all duration-200 ${
+            isPressed ? `${lightColor} shadow-md` : `${lightColor} opacity-30`
+          }`}
+        />
+      </div>
+    );
+  };
+
+  // Shared inner content render function
+  const innerContent = (childContent) => (
+    <>
+      <span
+        className={`absolute inset-x-0 bottom-0 top-1.5 border-6 rounded-sm border-slate-950/20 border-t-0 transition-all ${
+          isPressed ? pressedColor : baseColor
+        }`}
+      />
+      <span
+        className={`relative flex items-center justify-center border-2 rounded-sm text-gray-900 transition-all border-slate-950/20 group-active:-translate-y-0 ${
+          sizeVariants[size] || sizeVariants.default
+        } leading-none ${isPressed ? "-translate-y-0.5" : "-translate-y-1"} ${
+          isPressed ? pressedColor : baseColor
+        }`}
+      >
+        {renderLightIndicator()}
+        {childContent}
+      </span>
+    </>
+  );
+
   if (asChild) {
     const child = React.Children.only(children);
-    const childContent = child.props.children; // Capture the original inner content (e.g. the anchor text)
-    const innerContent = (
-      <>
-        <span
-          className={
-            `absolute inset-x-0 bottom-0 top-1.5 border-6 rounded-sm ` +
-            `border-slate-950/20 border-t-0 transition-all ${
-              isPressed ? pressedColor : baseColor
-            }`
-          }
-        />
-        <span
-          className={
-            `relative flex items-center justify-center border-2 rounded-sm text-gray-900 ` +
-            `will-change-transform transition-all border-slate-950/20 group-active:-translate-y-0 ` +
-            `${sizeVariants[size] || sizeVariants.default} leading-none ` +
-            `${isPressed ? "-translate-y-0.5" : "-translate-y-1"} ${
-              isPressed ? pressedColor : baseColor
-            }`
-          }
-        >
-          {lightColor && (
-            <div
-              className={`w-2 h-2 rounded-full transition-all duration-200 mr-2 ${
-                isPressed
-                  ? `${lightColor} shadow-[0_0_8px_rgba(249,115,22,0.5)]`
-                  : `${lightColor}/30`
-              }`}
-            />
-          )}
-          {childContent}
-        </span>
-      </>
-    );
-
+    const childContent = child.props.children;
     return React.cloneElement(child, {
       ...props,
       ...eventHandlers,
       className: [child.props.className, outerClass].filter(Boolean).join(" "),
-      children: innerContent,
+      children: innerContent(childContent),
     });
   }
 
-  // Regular button render
   return (
     <button {...props} {...eventHandlers} className={outerClass}>
-      <span
-        className={
-          `absolute inset-x-0 bottom-0 top-1.5 border-6 rounded-sm ` +
-          `border-slate-950/20 border-t-0 transition-all ${
-            isPressed ? pressedColor : baseColor
-          }`
-        }
-      />
-      <span
-        className={
-          `relative flex items-center justify-center border-2 rounded-sm text-gray-900 ` +
-          `will-change-transform transition-all border-slate-950/20 group-active:-translate-y-0 ` +
-          `${sizeVariants[size] || sizeVariants.default} leading-none ` +
-          `${isPressed ? "-translate-y-0.5" : "-translate-y-1"} ${
-            isPressed ? pressedColor : baseColor
-          }`
-        }
-      >
-        {lightColor && (
-          <div
-            className={`w-2 h-2 rounded-full transition-all duration-200 mr-2 ${
-              isPressed
-                ? `${lightColor} shadow-[0_0_8px_rgba(249,115,22,0.5)]`
-                : `${lightColor}/30`
-            }`}
-          />
-        )}
-        {children}
-      </span>
+      {innerContent(children)}
     </button>
   );
 }

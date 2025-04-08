@@ -35,7 +35,7 @@ const EmailSignup = () => {
   return (
     <ComponentCard
       title="Play it by Ear"
-      number="??"
+      number="##"
       description="Receive updates about new components and occasional sound design tips directly to your inbox. No spam."
       standout
     >
