@@ -97,7 +97,7 @@ export default function Button({
         {isPressed && (
           <>
             <div
-              className={`absolute w-3 h-3 rounded-full ${lightColor} opacity-30 blur-xs`}
+              className={`absolute w-3 h-3 rounded-full ${lightColor} opacity-20 blur-xs`}
             />
           </>
         )}
